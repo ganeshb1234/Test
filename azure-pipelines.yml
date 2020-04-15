@@ -26,4 +26,14 @@ steps:
       
       echo 'Hello world'
 
-      curl -H "Accept: application/xml" -X POST http://10.192.65.37/LoadTest/rest/domains/DEFAULT/projects/SanityTest/testsets -d "{\"command\":\"run\",\"utilCmdArgs\":\"-c 'echo "Hello World!"'\"}"
+      - task: PowerShell@2
+        inputs:
+          targetType: 'inline'
+          script: |
+            # Write your PowerShell commands here.
+            
+            Write-Host "Hello World"
+            $headers = @{ Authorization = "Basic Z2FuZXNoMDEyOmdhbmVzaDAxOQ==" }
+            $url = "http://10.192.65.37/LoadTest/rest/authentication-point/authenticate"
+            $responseData = Invoke-WebRequest -Uri $url -Method Get -Headers $headers -UseBasicParsing
+            return $responseData
