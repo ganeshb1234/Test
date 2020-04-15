@@ -18,18 +18,10 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 
-- task: PowerShell@2
-    inputs:
+- task: Bash@3
+  inputs:
     targetType: 'inline'
-      script: |
-        # Step 3. Form the header and add the Authorization attribute to it
-        $headers = @{ Authorization = "Basic Z2FuZXNoMDEyOmdhbmVzaDAxOQ==" }
-        
-        $url = "http://10.192.65.37/LoadTest/rest/authentication-point/authenticate"
-         
-        # Step 4. Make the GET request
-        $responseData = Invoke-WebRequest -Uri $url -Method Get -Headers $headers -UseBasicParsing
-         
-        return $responseData
-
-  
+    script: |
+      # Write your commands here
+      
+      echo 'Hello world'
