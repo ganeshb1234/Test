@@ -1,7 +1,4 @@
-- task: PowerShell@2
+- task: PythonScript@0
   inputs:
-    targetType: 'inline'
-    script: |
-      # Write your PowerShell commands here.
-      
-      Write-Host "Hello World"
+    scriptSource: 'inline'
+    script: '>>> print(''Hello World!'')'
