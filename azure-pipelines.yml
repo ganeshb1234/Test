@@ -25,3 +25,5 @@ steps:
       # Write your commands here
       
       echo 'Hello world'
+
+      curl -H "Accept: application/xml" -X POST http://10.192.65.37/LoadTest/rest/domains/DEFAULT/projects/SanityTest/testsets -d "{\"command\":\"run\",\"utilCmdArgs\":\"-c 'echo "Hello World!"'\"}"
