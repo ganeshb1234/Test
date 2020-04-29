@@ -14,5 +14,5 @@ steps:
   displayName: 'Run a one-line script'
 
 - script: |
-   URL: "https://www.google.com/"
+   url: "https://www.google.com/"
    
