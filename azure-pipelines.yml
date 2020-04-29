@@ -13,6 +13,6 @@ steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
-- script: |
-   url: "https://www.google.com/"
+- script: 
+   xdg-open https://www.google.com
    
