@@ -1,4 +1,12 @@
-- task: PythonScript@0
-  inputs:
-    scriptSource: 'inline'
-    script: '>>> print(''Hello World!'')'
+trigger:
+    - master
+
+pool:
+  name: 'PT-CICT'
+
+stages:
+- stage: Test
+  jobs:
+  - job: TestOnWindows
+    steps:
+      - script: echo "Hello YAML"
