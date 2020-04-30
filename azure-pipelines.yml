@@ -1,12 +1,16 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
 trigger:
-    - master
+- master
 
 pool:
-  name: 'PT-CICT'
+  vmImage: 'ubuntu-latest'
 
-stages:
-- stage: Test
-  jobs:
-  - job: TestOnWindows
-    steps:
-      - script: echo "Hello YAML"
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+#- script: 'curl -c cookie.txt -v -X GET "http://10.192.65.37/LoadTest/rest/authentication-point/authenticate" -H "Authorization: Basic Z2FuZXNoMDEyOmdhbmVzaDAxOQ=="'
