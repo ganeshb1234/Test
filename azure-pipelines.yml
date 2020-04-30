@@ -13,4 +13,4 @@ steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
-#- script: 'curl -c cookie.txt -v -X GET "http://10.192.65.37/LoadTest/rest/authentication-point/authenticate" -H "Authorization: Basic Z2FuZXNoMDEyOmdhbmVzaDAxOQ=="'
+- script: 'curl -c cookie.txt -v -X GET "http://10.192.65.37/LoadTest/rest/authentication-point/authenticate" -H "Authorization: Basic Z2FuZXNoMDEyOmdhbmVzaDAxOQ=="'
