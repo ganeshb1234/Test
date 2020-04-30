@@ -10,7 +10,13 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: 'curl -c cookie.txt -v -X GET "http://10.192.65.37/LoadTest/rest/authentication-point/authenticate" -H "Authorization: Basic Z2FuZXNoMDEyOmdhbmVzaDAxOQ=="'
+- script: npm install newman
+  displayName: 'npm install'
+ 
+- script: |
+    npx newman run AP_Invoices.postman_collection.json \
+                   -e AP_Invoices.postman_globals.json \
+                   -n 3 --delay-request 5000 --disable-unicode \
+                   --global-var client_id=$(CLIENT_ID) \
+                   --global-var client_secret=$(CLIENT_SECRET)
+  displayName: 'Run newman'
