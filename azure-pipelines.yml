@@ -12,11 +12,3 @@ pool:
 steps:
 - script: npm install newman
   displayName: 'npm install'
- 
-- script: |
-    npx newman run AP_Invoices.postman_collection.json \
-                   -e AP_Invoices.postman_globals.json \
-                   -n 3 --delay-request 5000 --disable-unicode \
-                   --global-var client_id=$(CLIENT_ID) \
-                   --global-var client_secret=$(CLIENT_SECRET)
-  displayName: 'Run newman'
