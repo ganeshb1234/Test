@@ -1,0 +1,242 @@
+{
+	"info": {
+		"_postman_id": "ae661103-5b59-4341-ac2a-0eb0443feaa3",
+		"name": "Test",
+		"description": "\t",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "LRE Authentication",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				},
+				"description": "LRE\t"
+			},
+			"response": []
+		},
+		{
+			"name": "RITELoad_Test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bc2d60dc-f2d0-428c-8432-a9455d86371e",
+						"exec": [
+							"var jsonObject = xml2Json(responseBody);",
+							"",
+							"//console.log(jsonObject.Test.ID);",
+							"",
+							"value = jsonObject.Test.ID;",
+							"",
+							"//console.log(value);",
+							"",
+							"pm.environment.set(\"Test_Id\", value);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<Test xmlns=\"http://www.hp.com/PC/REST/API\">\r\n      <Name>RITELoad_Test</Name>\r\n      <TestFolderPath>Subject\\SanityTest</TestFolderPath>\r\n      <Content>\t\t\t\r\n            <WorkloadType>\r\n                  <Type>real-world</Type>\r\n                  <SubType>by test</SubType>\r\n                  <VusersDistributionMode>by number</VusersDistributionMode>\r\n            </WorkloadType>\r\n            <LGDistribution>\r\n                  <Type>all to each group</Type>\r\n                  <Amount>1</Amount>\r\n            </LGDistribution>\r\n\t\t\t<Groups>\r\n                  <Group>\r\n                        <Name>auto_group</Name>\r\n                        <Vusers>2</Vusers>\r\n                        <Script>\r\n                              <ID>181</ID>\r\n                        </Script>\r\n\t\t\t\t\t\t<Host>\r\n                          <Name>azr8246tstapp03</Name>\r\n                          <Type>automatch</Type>\r\n                       </Host>\r\n                  </Group>\r\n\t\t\t\t  <Group>\r\n                        <Name>group_2</Name>\r\n                        <Vusers>2</Vusers>\r\n                        <Script>\r\n                              <ID>182</ID>\r\n                        </Script>\r\n\t\t\t\t\t\t<Host>\r\n                          <Name>azr8246tstapp03</Name>\r\n                          <Type>automatch</Type>\r\n                       </Host>\r\n                  </Group>\r\n            </Groups>\r\n            <Scheduler>\r\n                  <Actions>\r\n                  <Action>\r\n                        <Initialize Type=\"just before vuser runs\">\r\n                        <Vusers>0.0</Vusers>\r\n                        </Initialize>\r\n                        </Action>\r\n                        <Action>\r\n                              <StartVusers Type=\"simultaneously\">\r\n                                    <Vusers>4</Vusers>\r\n                              </StartVusers>\r\n                        </Action>\r\n                        <Action>\r\n                              <Duration Type=\"run for\">\r\n                                    <TimeInterval>\r\n                                          <Days>0</Days>\r\n                                          <Hours>0</Hours>\r\n                                          <Minutes>2</Minutes>\r\n                                          <Seconds>0</Seconds>\r\n                                    </TimeInterval>\r\n                              </Duration>\r\n                        </Action>\r\n                        <Action><StopVusers Type=\"simultaneously\"></StopVusers>\r\n                        </Action>\r\n                  </Actions>\r\n            </Scheduler>\r\n      </Content>\r\n</Test>",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.192.65.37/LoadTest/rest/domains/DEFAULT/projects/SanityTest/tests",
+					"protocol": "http",
+					"host": [
+						"10",
+						"192",
+						"65",
+						"37"
+					],
+					"path": [
+						"LoadTest",
+						"rest",
+						"domains",
+						"DEFAULT",
+						"projects",
+						"SanityTest",
+						"tests"
+					]
+				},
+				"description": "Create a test using API"
+			},
+			"response": []
+		},
+		{
+			"name": "Test Sets",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f20c4f0f-b928-4cf9-8548-45bfc5d7b2c0",
+						"exec": [
+							"var jsonObject = xml2Json(responseBody);",
+							"",
+							"console.log(jsonObject.TestSets.TestSet.TestSetID);",
+							"",
+							"value = jsonObject.TestSets.TestSet.TestSetID;",
+							"",
+							"console.log(value);",
+							"",
+							"pm.environment.set(\"TestSet_Id\", value);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://10.192.65.37/LoadTest/rest/domains/DEFAULT/projects/SanityTest/testsets",
+					"protocol": "http",
+					"host": [
+						"10",
+						"192",
+						"65",
+						"37"
+					],
+					"path": [
+						"LoadTest",
+						"rest",
+						"domains",
+						"DEFAULT",
+						"projects",
+						"SanityTest",
+						"testsets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Instance",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d082342d-cfc5-43d1-81d3-8324a0156621",
+						"exec": [
+							"var jsonObject = xml2Json(responseBody);",
+							"",
+							"console.log(jsonObject.TestInstance.TestInstanceID);",
+							"",
+							"value = jsonObject.TestInstance.TestInstanceID;",
+							"",
+							"console.log(value);",
+							"",
+							"pm.environment.set(\"TestInstance_Id\", value);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<TestInstance xmlns=\"http://www.hp.com/PC/REST/API\">\r\n <TestID>{{Test_Id}}</TestID>\r\n <TestSetID>{{TestSet_Id}}</TestSetID>\r\n</TestInstance>"
+				},
+				"url": {
+					"raw": "http://10.192.65.37/LoadTest/rest/domains/DES/projects/RITE/testInstances",
+					"protocol": "http",
+					"host": [
+						"10",
+						"192",
+						"65",
+						"37"
+					],
+					"path": [
+						"LoadTest",
+						"rest",
+						"domains",
+						"DES",
+						"projects",
+						"RITE",
+						"testInstances"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Run",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				},
+				"description": "Test run in LRE"
+			},
+			"response": []
+		},
+		{
+			"name": "Test Run Status",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://10.192.65.37/LoadTest/rest/domains/DEFAULT/projects/SanityTest/Runs/{{Run_Id}}",
+					"protocol": "http",
+					"host": [
+						"10",
+						"192",
+						"65",
+						"37"
+					],
+					"path": [
+						"LoadTest",
+						"rest",
+						"domains",
+						"DEFAULT",
+						"projects",
+						"SanityTest",
+						"Runs",
+						"{{Run_Id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
