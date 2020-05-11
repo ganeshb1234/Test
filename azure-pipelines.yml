@@ -10,7 +10,6 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: npm install newman
+#- script: npm install newman
   displayName: 'npm install'
-- script: 
-     npx newman run LREExample.postman_collection.json
+#- script: npx newman run LREExample.postman_collection.json
